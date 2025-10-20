@@ -1,4 +1,5 @@
 resource "aws_ses_domain_dkim" "default" {
+  region = var.region
   domain = aws_ses_domain_identity.default.domain
 }
 

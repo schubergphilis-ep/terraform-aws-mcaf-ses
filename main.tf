@@ -12,10 +12,12 @@ data "aws_route53_zone" "default" {
 
 // Configure domain identity
 resource "aws_ses_domain_identity" "default" {
+  region = var.region
   domain = var.domain
 }
 
 resource "aws_ses_domain_identity_verification" "default" {
+  region     = var.region
   domain     = aws_ses_domain_identity.default.id
   depends_on = [aws_route53_record.ses_verification]
 }
@@ -40,7 +42,7 @@ resource "aws_route53_record" "mail_from_mx" {
   provider = aws.route53
 
   name    = aws_ses_domain_mail_from.default.mail_from_domain
-  records = [format("10 feedback-smtp.%s.amazonses.com", data.aws_region.current.name)]
+  records = [format("10 feedback-smtp.%s.amazonses.com", data.aws_region.current.region)]
   ttl     = "600"
   type    = "MX"
   zone_id = data.aws_route53_zone.default.zone_id
@@ -51,7 +53,7 @@ resource "aws_route53_record" "domain_mx" {
   provider = aws.route53
 
   name    = var.domain
-  records = [format("10 inbound-smtp.%s.amazonaws.com", data.aws_region.current.name)]
+  records = [format("10 inbound-smtp.%s.amazonaws.com", data.aws_region.current.region)]
   ttl     = 600
   type    = "MX"
   zone_id = data.aws_route53_zone.default.zone_id
