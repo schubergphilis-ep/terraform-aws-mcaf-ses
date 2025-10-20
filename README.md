@@ -8,20 +8,20 @@ Terraform module to configure SES.
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.9.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.0.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 4.9.0 |
-| <a name="provider_aws.route53"></a> [aws.route53](#provider\_aws.route53) | >= 4.9.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 6.0.0 |
+| <a name="provider_aws.route53"></a> [aws.route53](#provider\_aws.route53) | >= 6.0.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_smtp_users"></a> [smtp\_users](#module\_smtp\_users) | github.com/schubergphilis/terraform-aws-mcaf-user | v0.1.12 |
+| <a name="module_smtp_users"></a> [smtp\_users](#module\_smtp\_users) | schubergphilis/mcaf-user/aws | ~> 1.0.0 |
 
 ## Resources
 
@@ -51,9 +51,10 @@ Terraform module to configure SES.
 |------|-------------|------|---------|:--------:|
 | <a name="input_domain"></a> [domain](#input\_domain) | Domain name | `string` | n/a | yes |
 | <a name="input_create_spf_wildcard_record"></a> [create\_spf\_wildcard\_record](#input\_create\_spf\_wildcard\_record) | Set to true to create an additional wildcard SPF record that denies email from all subdomains | `bool` | `true` | no |
-| <a name="input_dmarc"></a> [dmarc](#input\_dmarc) | DMARC configuration | <pre>object({<br>    policy = optional(string, "v=DMARC1;p=reject;sp=reject")<br>    rua    = optional(string)<br>    ruf    = optional(string)<br>  })</pre> | <pre>{<br>  "policy": "v=DMARC1;p=reject;sp=reject"<br>}</pre> | no |
+| <a name="input_dmarc"></a> [dmarc](#input\_dmarc) | DMARC configuration | <pre>object({<br/>    policy = optional(string, "v=DMARC1;p=reject;sp=reject")<br/>    rua    = optional(string)<br/>    ruf    = optional(string)<br/>  })</pre> | <pre>{<br/>  "policy": "v=DMARC1;p=reject;sp=reject"<br/>}</pre> | no |
 | <a name="input_kms_key_id"></a> [kms\_key\_id](#input\_kms\_key\_id) | KMS key ARN used for encryption | `string` | `null` | no |
 | <a name="input_mail_from_domain"></a> [mail\_from\_domain](#input\_mail\_from\_domain) | Set a MAIL FROM domain (defaults to `mail.$domain`) | `string` | `null` | no |
+| <a name="input_region"></a> [region](#input\_region) | The AWS region where resources will be created; if omitted the default provider region is used | `string` | `null` | no |
 | <a name="input_smtp_users"></a> [smtp\_users](#input\_smtp\_users) | List of SMTP users allowed to send mail from this domain | `list(string)` | `[]` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Map of tags to set on Terraform created resources | `map(string)` | `null` | no |
 

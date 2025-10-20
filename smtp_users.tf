@@ -4,8 +4,9 @@ module "smtp_users" {
   for_each = toset(var.smtp_users)
 
   source  = "schubergphilis/mcaf-user/aws"
-  version = "~> 0.4.3"
+  version = "~> 1.0.0"
 
+  region                   = var.region
   name                     = "${each.key}@${var.domain}"
   create_policy            = true
   policy                   = data.aws_iam_policy_document.allow_iam_user_to_send_emails.json
@@ -27,6 +28,7 @@ resource "aws_secretsmanager_secret" "default" {
   #checkov:skip=CKV2_AWS_57: Not possible to enable secret rotation for this resource
   for_each = toset(var.smtp_users)
 
+  region     = var.region
   name       = "ses/${var.domain}/${each.key}"
   kms_key_id = var.kms_key_id
   tags       = var.tags
@@ -35,6 +37,7 @@ resource "aws_secretsmanager_secret" "default" {
 resource "aws_secretsmanager_secret_version" "default" {
   for_each = toset(var.smtp_users)
 
+  region    = var.region
   secret_id = aws_secretsmanager_secret.default[each.key].id
 
   secret_string = jsonencode({

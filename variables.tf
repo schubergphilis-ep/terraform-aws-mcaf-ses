@@ -31,6 +31,12 @@ variable "kms_key_id" {
   description = "KMS key ARN used for encryption"
 }
 
+variable "region" {
+  type        = string
+  default     = null
+  description = "The AWS region where resources will be created; if omitted the default provider region is used"
+}
+
 variable "smtp_users" {
   type        = list(string)
   default     = []
