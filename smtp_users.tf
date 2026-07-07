@@ -3,7 +3,7 @@ module "smtp_users" {
   #checkov:skip=CKV_AWS_273: IAM user is the only option for SMTP auth
   for_each = toset(var.smtp_users)
 
-  source  = "schubergphilis/mcaf-user/aws"
+  source  = "schubergphilis-ep/mcaf-user/aws"
   version = "~> 1.0.0"
 
   region                   = var.region

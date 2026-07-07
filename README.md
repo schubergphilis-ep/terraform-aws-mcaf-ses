@@ -21,7 +21,7 @@ Terraform module to configure SES.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_smtp_users"></a> [smtp\_users](#module\_smtp\_users) | schubergphilis/mcaf-user/aws | ~> 1.0.0 |
+| <a name="module_smtp_users"></a> [smtp\_users](#module\_smtp\_users) | schubergphilis-ep/mcaf-user/aws | ~> 1.0.0 |
 
 ## Resources
 
