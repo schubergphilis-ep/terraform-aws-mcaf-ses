@@ -25,6 +25,17 @@ variable "mail_from_domain" {
   description = "Set a MAIL FROM domain (defaults to `mail.$domain`)"
 }
 
+variable "policies" {
+  type        = map(string)
+  default     = {}
+  description = "SES authorization policies attached to the domain identity, keyed by policy name; value is a raw IAM policy JSON document"
+
+  validation {
+    condition     = alltrue([for k, v in var.policies : can(jsondecode(v))])
+    error_message = "Every policies value must be a valid JSON string."
+  }
+}
+
 variable "kms_key_id" {
   type        = string
   default     = null

@@ -41,6 +41,7 @@ Terraform module to configure SES.
 | [aws_ses_domain_identity.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ses_domain_identity) | resource |
 | [aws_ses_domain_identity_verification.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ses_domain_identity_verification) | resource |
 | [aws_ses_domain_mail_from.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ses_domain_mail_from) | resource |
+| [aws_ses_identity_policy.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ses_identity_policy) | resource |
 | [aws_iam_policy_document.allow_iam_user_to_send_emails](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
 | [aws_route53_zone.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/route53_zone) | data source |
@@ -49,11 +50,12 @@ Terraform module to configure SES.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_domain"></a> [domain](#input\_domain) | Domain name | `string` | n/a | yes |
 | <a name="input_create_spf_wildcard_record"></a> [create\_spf\_wildcard\_record](#input\_create\_spf\_wildcard\_record) | Set to true to create an additional wildcard SPF record that denies email from all subdomains | `bool` | `true` | no |
 | <a name="input_dmarc"></a> [dmarc](#input\_dmarc) | DMARC configuration | <pre>object({<br/>    policy = optional(string, "v=DMARC1;p=reject;sp=reject")<br/>    rua    = optional(string)<br/>    ruf    = optional(string)<br/>  })</pre> | <pre>{<br/>  "policy": "v=DMARC1;p=reject;sp=reject"<br/>}</pre> | no |
+| <a name="input_domain"></a> [domain](#input\_domain) | Domain name | `string` | n/a | yes |
 | <a name="input_kms_key_id"></a> [kms\_key\_id](#input\_kms\_key\_id) | KMS key ARN used for encryption | `string` | `null` | no |
 | <a name="input_mail_from_domain"></a> [mail\_from\_domain](#input\_mail\_from\_domain) | Set a MAIL FROM domain (defaults to `mail.$domain`) | `string` | `null` | no |
+| <a name="input_policies"></a> [policies](#input\_policies) | SES authorization policies attached to the domain identity, keyed by policy name; value is a raw IAM policy JSON document | `map(string)` | `{}` | no |
 | <a name="input_region"></a> [region](#input\_region) | The AWS region where resources will be created; if omitted the default provider region is used | `string` | `null` | no |
 | <a name="input_smtp_users"></a> [smtp\_users](#input\_smtp\_users) | List of SMTP users allowed to send mail from this domain | `list(string)` | `[]` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Map of tags to set on Terraform created resources | `map(string)` | `null` | no |
