@@ -22,6 +22,15 @@ resource "aws_ses_domain_identity_verification" "default" {
   depends_on = [aws_route53_record.ses_verification]
 }
 
+resource "aws_ses_identity_policy" "default" {
+  for_each = var.policies
+
+  region   = var.region
+  identity = aws_ses_domain_identity.default.arn
+  name     = each.key
+  policy   = each.value
+}
+
 resource "aws_route53_record" "ses_verification" {
   provider = aws.route53
 
