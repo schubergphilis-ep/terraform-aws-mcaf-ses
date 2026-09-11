@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.1.0](https://github.com/schubergphilis-ep/terraform-aws-mcaf-ses/compare/v1.0.1...v1.1.0) (2026-09-11)
+
+
+### 🚀 Features
+
+* add SES authorization policy support ([#4](https://github.com/schubergphilis-ep/terraform-aws-mcaf-ses/issues/4)) ([bb4288f](https://github.com/schubergphilis-ep/terraform-aws-mcaf-ses/commit/bb4288fb101c4a66ffe724ee764be7de13d1c741))
+
+
+### 🐛 Fixes
+
+* duplicate CHANGELOG is causing checkout issues ([#6](https://github.com/schubergphilis-ep/terraform-aws-mcaf-ses/issues/6)) ([c328ee1](https://github.com/schubergphilis-ep/terraform-aws-mcaf-ses/commit/c328ee1cf7fe5008e4edf3e355ebae0f0202dbb9))
+
 ## [1.0.1](https://github.com/schubergphilis-ep/terraform-aws-mcaf-ses/compare/v1.0.0...v1.0.1) (2026-07-07)
 
 
@@ -53,4 +65,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.1](https://github.com/schubergphilis-ep/terraform-aws-mcaf-ses/compare/v0.1.0...v0.1.1) (2022-09-29)
 
 ## 0.1.0 (2021-12-01)
-
